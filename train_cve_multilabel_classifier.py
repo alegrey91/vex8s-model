@@ -32,15 +32,21 @@ DATASET_PATH = "cve_multilabel_dataset.csv"
 ONNX_MODEL_PATH = "cve_multilabel_classifier.onnx"
 
 LABELS = [
-    "arbitrary_file_write_access",
-    "privilege_escalation",
+    "arbitrary_file_write",
+    "system_privileges_escalation",
     "resource_exhaustion",
+    "code_execution",
+    "arbitrary_file_read",
+    "application_privileges_escalation"
 ]
 
 THRESHOLDS = {
-    "arbitrary_file_write_access": 0.4,
-    "privilege_escalation": 0.4,
-    "resource_exhaustion": 0.3,
+    "arbitrary_file_write": 0.4,
+    "system_privileges_escalation": 0.4,
+    "resource_exhaustion": 0.4,
+    "code_execution": 0.4,
+    "arbitrary_file_read": 0.4,
+    "application_privileges_escalation": 0.4,
 }
 
 
