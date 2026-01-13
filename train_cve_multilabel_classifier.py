@@ -10,7 +10,9 @@ Multi-label CVE classifier:
 import re
 import numpy as np
 import pandas as pd
+import warnings
 
+from sklearn.exceptions import UndefinedMetricWarning
 from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.multiclass import OneVsRestClassifier
@@ -121,10 +123,11 @@ def train_model(X, y):
     y_pred = pipeline.predict(X_test)
 
     print("\n=== Classification report ===")
+    warnings.filterwarnings("ignore", category=UndefinedMetricWarning)
     print(classification_report(y_test, y_pred, target_names=LABELS))
 
-    print("Micro F1 :", f1_score(y_test, y_pred, average="micro"))
-    print("Macro F1 :", f1_score(y_test, y_pred, average="macro"))
+    print("Micro F1 :", f1_score(y_test, y_pred, average="micro", zero_division=1))
+    print("Macro F1 :", f1_score(y_test, y_pred, average="macro", zero_division=1))
     print("Hamming  :", hamming_loss(y_test, y_pred))
 
     return pipeline
