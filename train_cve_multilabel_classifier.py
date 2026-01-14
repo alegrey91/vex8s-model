@@ -10,7 +10,9 @@ Multi-label CVE classifier:
 import re
 import numpy as np
 import pandas as pd
+import warnings
 
+from sklearn.exceptions import UndefinedMetricWarning
 from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.multiclass import OneVsRestClassifier
@@ -32,15 +34,21 @@ DATASET_PATH = "cve_multilabel_dataset.csv"
 ONNX_MODEL_PATH = "cve_multilabel_classifier.onnx"
 
 LABELS = [
-    "arbitrary_file_write_access",
-    "privilege_escalation",
+    "arbitrary_file_write",
+    "system_privileges_escalation",
     "resource_exhaustion",
+    "code_execution",
+    "arbitrary_file_read",
+    "application_privileges_escalation"
 ]
 
 THRESHOLDS = {
-    "arbitrary_file_write_access": 0.4,
-    "privilege_escalation": 0.4,
-    "resource_exhaustion": 0.3,
+    "arbitrary_file_write": 0.4,
+    "system_privileges_escalation": 0.4,
+    "resource_exhaustion": 0.4,
+    "code_execution": 0.4,
+    "arbitrary_file_read": 0.4,
+    "application_privileges_escalation": 0.4,
 }
 
 
@@ -115,10 +123,11 @@ def train_model(X, y):
     y_pred = pipeline.predict(X_test)
 
     print("\n=== Classification report ===")
+    warnings.filterwarnings("ignore", category=UndefinedMetricWarning)
     print(classification_report(y_test, y_pred, target_names=LABELS))
 
-    print("Micro F1 :", f1_score(y_test, y_pred, average="micro"))
-    print("Macro F1 :", f1_score(y_test, y_pred, average="macro"))
+    print("Micro F1 :", f1_score(y_test, y_pred, average="micro", zero_division=1))
+    print("Macro F1 :", f1_score(y_test, y_pred, average="macro", zero_division=1))
     print("Hamming  :", hamming_loss(y_test, y_pred))
 
     return pipeline
