@@ -28,10 +28,10 @@ jobs:
 
       - name: Run training script
         run: |
-          python train_cve_multilabel_classifier.py
+          python train_cve_classifier_naive_bayes.py
 
       - name: Upload model to release
         uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844 # ratchet:softprops/action-gh-release@v1
         with:
           files: |
-            cve_multilabel_classifier.onnx
+            vex8s_cve_classifier.onnx
