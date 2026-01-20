@@ -1,6 +1,9 @@
 name: Train and Upload Model
 
 on:
+  push:
+    branches:
+      - "*"
   release:
     types: [published]
 
