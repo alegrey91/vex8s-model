@@ -100,7 +100,7 @@ sess = rt.InferenceSession(onnx_filename, providers=["CPUExecutionProvider"])
 input_name = sess.get_inputs()[0].name
 
 # Test with a dummy CVE description
-test_text = "Heap-based buffer overflow in the image processor allows code execution."
+test_text = "curl 7.20.0 through 7.70.0 is vulnerable to improper restriction of names for files and other resources that can lead too overwriting a local file when the -J flag is used"
 input_data = np.array([[test_text]])
 
 pred_onx = sess.run(None, {input_name: input_data})
