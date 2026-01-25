@@ -28,7 +28,6 @@ label_columns = [
     'arbitrary_file_write',
     'system_privileges_escalation',
     'resource_exhaustion',
-    'code_execution',
     'arbitrary_file_read',
     'application_privileges_escalation'
 ]
