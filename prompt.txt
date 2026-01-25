@@ -2,7 +2,6 @@ given the following CVE descriptions could you classify each of them with one (o
 arbitrary_file_write: the application has an arbitrary file write vulnerability as main flaw
 system_privilege_escalation: the application has a system privilege escalation as main flaw
 resource_exhaustion: the application has a resource exhaustion as main flaw
-code_injection: the application has a code injection as main flaw
 arbitrary_file_read: the application has an arbitrary file read as main flaw
 application_privilege_escalation: the application has (non system) privilege escalation (eg. web application users)
 for each description, please set the labels listed below witht the following logic: if a label represents the main cause of the vulnerability, than mark only that label (eg. an arbitrary file write on an application that can lead to code execution and potentially a privilege escalation on the system must be marked as arbitrary_file_write, since this is the flaw that allow attacker to exploit the application (code execution and privilege escalation are consequences of this)).
