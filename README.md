@@ -3,7 +3,7 @@
 ## Introduction
 
 This repository provides a multi-label machine learning model for automated classification of CVE (Common Vulnerabilities and Exposures) descriptions.
-The model analyzes vulnerability text and predicts multiple security-related labels, such as `arbitrary_file_write`, `system_privileges_escalation`, `resource_exhaustion`, `code_execution`, and more.
+The model analyzes vulnerability text and predicts multiple security-related labels, such as `arbitrary_file_write`, `system_privileges_escalation`, `resource_exhaustion`, and more.
 
 It leverages advanced natural language processing techniques (including TF-IDF, stemming, and stopword removal) to extract meaningful features from CVE descriptions. The classifier is designed to assist security researchers and automation systems in quickly identifying the nature of vulnerabilities from textual data, supporting both training and production inference workflows.
 
