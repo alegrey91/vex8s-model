@@ -18,6 +18,7 @@ The model is trained to predict the following *exploitation categories*:
 | `system_privileges_escalation` | A vulnerability that allows an attacker to gain higher privileges at the operating system or kernel level, typically escalating from an unprivileged user to administrative or root access. |
 | `application_privileges_escalation` | A flaw that allows an attacker to gain higher privileges within the context of an application, such as escalating from a normal user to an admin role, bypassing authorization checks without gaining OS-level privileges. |
 | `resource_exhaustion` | A condition where an attacker can intentionally consume excessive system or application resources (CPU, memory), leading to degraded performance or denial of service. |
+| `application_crash` | A condition where an attacker can intentionally make the application crash, leading to denial of service. |
 
 ## Setup
 
