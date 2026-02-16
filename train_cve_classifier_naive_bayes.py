@@ -29,7 +29,8 @@ label_columns = [
     'system_privileges_escalation',
     'resource_exhaustion',
     'arbitrary_file_read',
-    'application_privileges_escalation'
+    'application_privileges_escalation',
+    'application_crash'
 ]
 y = df[label_columns]
 
