@@ -24,6 +24,18 @@ except FileNotFoundError:
     exit()
 
 X = df['description']
+afw_examples = df[df['arbitrary_file_write'] == 1]
+print(f"Total arbitrary_file_write examples: {len(afw_examples)}")
+afr_examples = df[df['arbitrary_file_read'] == 1]
+print(f"Total arbitrary_file_read examples: {len(afr_examples)}")
+spv_examples = df[df['system_privileges_escalation'] == 1]
+print(f"Total system_privileges_escalation examples: {len(spv_examples)}")
+apv_examples = df[df['application_privileges_escalation'] == 1]
+print(f"Total application_privileges_escalation examples: {len(apv_examples)}")
+re_examples = df[df['resource_exhaustion'] == 1]
+print(f"Total resource_exhaustion examples: {len(re_examples)}")
+ac_examples = df[df['application_crash'] == 1]
+print(f"Total application_crash examples: {len(ac_examples)}")
 label_columns = [
     'arbitrary_file_write',
     'system_privileges_escalation',
@@ -38,6 +50,35 @@ y = df[label_columns]
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
 )
+print("arbitrary_file_write")
+print("Full dataset:", y['arbitrary_file_write'].sum())
+print("Train set:", y_train['arbitrary_file_write'].sum())
+print("Test set:", y_test['arbitrary_file_write'].sum())
+print("--------------------")
+print("arbitrary_file_read")
+print("Full dataset:", y['arbitrary_file_read'].sum())
+print("Train set:", y_train['arbitrary_file_read'].sum())
+print("Test set:", y_test['arbitrary_file_read'].sum())
+print("--------------------")
+print("system_privileges_escalation")
+print("Full dataset:", y['system_privileges_escalation'].sum())
+print("Train set:", y_train['system_privileges_escalation'].sum())
+print("Test set:", y_test['system_privileges_escalation'].sum())
+print("--------------------")
+print("application_privileges_escalation")
+print("Full dataset:", y['application_privileges_escalation'].sum())
+print("Train set:", y_train['application_privileges_escalation'].sum())
+print("Test set:", y_test['application_privileges_escalation'].sum())
+print("--------------------")
+print("resource_exhaustion")
+print("Full dataset:", y['resource_exhaustion'].sum())
+print("Train set:", y_train['resource_exhaustion'].sum())
+print("Test set:", y_test['resource_exhaustion'].sum())
+print("--------------------")
+print("application_crash")
+print("Full dataset:", y['application_crash'].sum())
+print("Train set:", y_train['application_crash'].sum())
+print("Test set:", y_test['application_crash'].sum())
 
 # ==========================================
 # 2. Build and Train Pipeline (Multinomial)
