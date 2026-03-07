@@ -1,10 +1,12 @@
 given the following CVE descriptions could you classify each of them with one (or more) of the following labels?
-arbitrary_file_write: the application has an arbitrary file write vulnerability as main flaw
-system_privilege_escalation: the application has a system privilege escalation as main flaw
-resource_exhaustion: the application has a resource exhaustion as main flaw
-arbitrary_file_read: the application has an arbitrary file read as main flaw
-application_privilege_escalation: the application has (non system) privilege escalation (eg. web application users)
-for each description, please set the labels listed below witht the following logic: if a label represents the main cause of the vulnerability, than mark only that label (eg. an arbitrary file write on an application that can lead to code execution and potentially a privilege escalation on the system must be marked as arbitrary_file_write, since this is the flaw that allow attacker to exploit the application (code execution and privilege escalation are consequences of this)).
+- arbitrary_file_write: the application has an arbitrary file write vulnerability as main flaw
+- system_privilege_escalation: the application has a system privilege escalation as main flaw
+- resource_exhaustion: the application has a resource exhaustion as main flaw
+- arbitrary_file_read: the application has an arbitrary file read as main flaw
+- application_privilege_escalation: the application has (non system) privilege escalation (eg. web application users)
+- application_crash: the application crash due to a memory corruption or raise condition that leads to a Denial of Service
+
+for each description, please set the labels listed below with the following logic: if a label represents the main cause of the vulnerability, than mark only that label (eg. an arbitrary file write on an application that can lead to code execution and potentially a privilege escalation on the system must be marked as arbitrary_file_write, since this is the flaw that allow attacker to exploit the application (code execution and privilege escalation are consequences of this)).
 please remember that in any case, each description can have multiple labels only if they are independent between eachother (eg. an arbitrary file write and read on an application that can lead to privilege escalation, must be marked with arbitrary_file_write and arbitrary_file_read (the privilege escalation represents the consequence of the arbitrary file write/read access).
 please remember that a description could also not belong to any labels, so that results in 0,0,0,0,0,0
 please, provide the output as csv using the following format (each item must have a new line at the end of the last label):
