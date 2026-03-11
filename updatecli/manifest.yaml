@@ -4,11 +4,11 @@ scms:
   vex8s:
     kind: github
     spec:
-      user: updatecli-bot
+      user: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
       owner: alegrey91
       repository: vex8s
       branch: main
-      token: '{{ requiredEnv "GITHUB_TOKEN" }}'
+      token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
 
 sources:
   latestRelease:
@@ -17,9 +17,12 @@ sources:
     spec:
       owner: alegrey91
       repository: vex8s-model
-      token: '{{ requiredEnv "GITHUB_TOKEN" }}'
+      username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
+      token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
       versionfilter:
         kind: semver
+        pattern: ">=0.0.0-0" # include pre-release, release
+
 
 targets:
   updateModelVersion:
