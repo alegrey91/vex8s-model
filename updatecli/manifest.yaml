@@ -1,0 +1,43 @@
+name: "Update vex8s model version"
+
+scms:
+  vex8s:
+    kind: github
+    spec:
+      user: updatecli-bot
+      owner: alegrey91
+      repository: vex8s
+      branch: main
+      token: '{{ requiredEnv "GITHUB_TOKEN" }}'
+
+sources:
+  latestRelease:
+    name: "Get latest vex8s-model release"
+    kind: githubrelease
+    spec:
+      owner: alegrey91
+      repository: vex8s-model
+      token: '{{ requiredEnv "GITHUB_TOKEN" }}'
+      versionfilter:
+        kind: semver
+
+targets:
+  updateModelVersion:
+    name: "Update MODEL_VERSION in model-version.txt"
+    kind: file
+    sourceid: latestRelease
+    scmid: vex8s
+    spec:
+      file: model-version.txt
+      matchpattern: 'MODEL_VERSION=(.*)'
+      replacepattern: 'MODEL_VERSION={{ source "latestRelease" }}'
+
+actions:
+  openPR:
+    kind: github/pullrequest
+    scmid: vex8s
+    title: 'chore(deps): update vex8s-model to {{ source "latestRelease" }}'
+    spec:
+      labels:
+        - dependencies
+        - automated
