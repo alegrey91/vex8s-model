@@ -20,4 +20,5 @@ jobs:
       - name: Run updatecli
         run: updatecli apply --config updatecli/manifest.yaml
         env:
-          GITHUB_TOKEN: ${{ secrets.UPDATECLI_GITHUB_TOKEN }}
+          UPDATECLI_GITHUB_ACTOR: "${{ github.repository_owner }}"
+          UPDATECLI_GITHUB_TOKEN: "${{ secrets.UPDATECLI_GITHUB_TOKEN }}"
