@@ -1,0 +1,23 @@
+name: Update model version in vex8s
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  updatecli:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # ratchet:actions/checkout@v6
+
+      - name: Install updatecli
+        uses: updatecli/updatecli-action@5101c2f892842e08c17cc492258eaaf8414286d7 # ratchet:updatecli/updatecli-action@v2
+
+      - name: Run updatecli
+        run: updatecli apply --config updatecli/manifest.yaml
+        env:
+          GITHUB_TOKEN: ${{ secrets.UPDATECLI_GITHUB_TOKEN }}
